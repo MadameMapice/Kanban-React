@@ -6,6 +6,11 @@ header{
   color: white;
 }
 
+.flexB{
+  display: flex;
+  justify-content: space-between;
+}
+
 .titre{
   padding: 20px;
   margin-left: 50px;
@@ -22,7 +27,6 @@ h2{
   margin-left: 0;
   font-size: 30px;
 }
-
 
 
 .conexion{
@@ -102,31 +106,14 @@ h2{
 }
 
 
-footer{
-  color: white;
-  text-align: center;
-  background-color: black;
-  font-size: 20px;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-
-.fa-copyright{
-  font-size: 10px;
-  position: absolute;
-  padding: 5px;
-}
-
 .form{
 
   text-align: center;
   border: 2px black solid;
-  width: 350px;
+  width: 360px;
   margin: auto;
   margin-top: 100px;
   padding: 50px;
-
 }
 
 .form input{
@@ -134,6 +121,11 @@ footer{
   height: 30px;
   border: 2px black solid;
   margin: 20px;
+}
+.form label{
+  width: 35%;
+  text-align: left;
+  /* word-break: break-all; */
 }
 
 button{
@@ -144,13 +136,7 @@ button{
   text-align: center;
 }
 
-label{
-  margin: 10px;
-}
-.flexB{
-  display: flex;
-  justify-content: space-between;
-}
+
 
 .compte{
   border: 1px black solid;
@@ -183,6 +169,35 @@ label{
 .fa-laugh-beam{
   font-size: 80px;
   padding: 10px;
+}
+
+.postit{
+  background-color: rgb(204, 180, 226);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+  height: 140px;
+}
+
+.flech{
+  display: flex;
+  justify-content: space-between;
+}
+
+footer{
+  color: white;
+  text-align: center;
+  background-color: black;
+  font-size: 20px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.fa-copyright{
+  font-size: 10px;
+  position: absolute;
+  padding: 5px;
 }
 
 

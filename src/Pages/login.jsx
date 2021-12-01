@@ -1,26 +1,37 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import {useState} from 'react'
 
 function Login(props){
+
+    const[login, setLogin] = useState('')
+    const[pass, setPass]= useState('')
+
+    function submitForm(event) {
+        event.preventDefault()
+        //  console.log(login);
+        
+    }
+
     return (
         
-        <div className='log'>
+        <form className='log' onSubmit={submitForm}>
             <div className="flexB">
-            <label for='nom'>Nom : </label>
-            <input type='nom'/></div>
+            <label htmlFor='nom'>Nom : </label>
+            <input type='text' id='nom' value = {login} onChange = { (event) => {setLogin(event.target.value) }} /></div>
             
             <div className="flexB">
-            <label for='mot clé'>Mot clé </label>
-            <input type='mot clé'/>
+            <label htmlFor='mdp'>Mot de Passe </label>
+            <input type='password' id='mdp' value = {pass} onChange = { (event) => {setPass(event.target.value)}}/>
             </div>
-            <button>Connexion</button>
+            <button type='submit'>Connexion</button>
             
             <div className="inscription flex">
                 <p>Pas de compte?</p>
                 <Link to='inscription'>Inscrivez-vous</Link>
             </div>
 
-        </div>
+        </form>
 
     )
 }

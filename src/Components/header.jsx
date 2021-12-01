@@ -9,7 +9,7 @@ function Header(props){
         <div className='titre flex'>
           <h1>
             Mes Taches 
-          </h1><i class="fas fa-pencil-alt"></i>
+          </h1><i className="fas fa-pencil-alt"></i>
         </div>
 
         <div className='conexion'>
