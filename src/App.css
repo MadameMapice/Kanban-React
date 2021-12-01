@@ -1,4 +1,192 @@
-.App {
+.App{
+  font-family: 'Indie Flower', cursive;}
+
+header{
+  background-color: black;
+  color: white;
+}
+
+.titre{
+  padding: 20px;
+  margin-left: 50px;
+  
+}
+
+h2{
+ text-align: center;
+ text-decoration-line: underline;
+}
+
+.fa-pencil-alt{
+  padding: 25px;
+  margin-left: 0;
+  font-size: 30px;
+}
+
+
+
+.conexion{
+  padding: 50px;
+  display: flex;
+  font-size: 20px;
+
+}
+
+.conexion a{
+  color: white;
+  text-decoration: none;
+  margin:10px;
+}
+
+.flex{
+  display: flex;
+}
+
+.justify-sb{
+  justify-content: space-between;
+}
+
+.justify-sa{
+  justify-content: space-around;
+}
+
+
+
+.width20{
+  width: 20%;
+  height: 570px;
+  margin-top: 40px;
+  border: 2px black solid;
+  margin-bottom: 40px;
+
+}
+
+.log{
+  width: 30%;
+  height: 300px;
+  border: 2px black solid;
+  margin: auto;
+  margin-top: 150px;
+  margin-bottom: 150px;
+  padding: 50px;
+  padding-top: 100px;
+  text-align: center;
+
+}
+
+.log>div{
+  margin: 20px;
+}
+
+.log input{
+  width:80%;
+  height: 30px;
+  border: 2px black solid;
+}
+
+.log button{
+  width: 200px;
+  padding: 10px 0px;
+  background-color: black;
+  color: white;
+}
+
+.log a{
+  padding: 15px;
+}
+
+
+
+.inscription{
+  justify-content: center;
+}
+
+
+footer{
+  color: white;
+  text-align: center;
+  background-color: black;
+  font-size: 20px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.fa-copyright{
+  font-size: 10px;
+  position: absolute;
+  padding: 5px;
+}
+
+.form{
+
+  text-align: center;
+  border: 2px black solid;
+  width: 350px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 50px;
+
+}
+
+.form input{
+  width: 60%;
+  height: 30px;
+  border: 2px black solid;
+  margin: 20px;
+}
+
+button{
+  width: 200px;
+  padding: 10px 0px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+label{
+  margin: 10px;
+}
+.flexB{
+  display: flex;
+  justify-content: space-between;
+}
+
+.compte{
+  border: 1px black solid;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  padding: 50px;
+  margin-top: 50px;
+
+}
+
+.compte input{
+
+  width: 60%;
+  height: 30px;
+  border: 2px black solid;
+  margin: 20px;
+}
+
+.profil{
+  border-radius: 50%;
+  border: 2px black solid;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin: auto;
+  
+}
+
+.fa-laugh-beam{
+  font-size: 80px;
+  padding: 10px;
+}
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +223,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
