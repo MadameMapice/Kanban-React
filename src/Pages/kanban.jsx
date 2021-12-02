@@ -1,14 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Column from '../Components/column';
+import {RecupTachesApi} from '../API/kanbanApi';
+
 
 
 function Kanban(props){
 
 
 
-  const [tableau, settableau] = useState([]);
-    return (
+  const [tableau, settableau] = useState([]); 
 
+  useEffect(() => {
+
+    RecupTachesApi()
+    .then(function (data) {
+
+    console.log(data);
+    settableau([...data.tasks])
+
+}).catch(function (error) {
+    console.warn('Something went wrong.', error);
+});
+    
+},[])
+
+
+    return (
 
       <div  className='kanban flex justify-sa'>
         <Column titre="To Do" tableau={tableau} statut='0' settableau={settableau}/>
@@ -20,3 +37,6 @@ function Kanban(props){
 }
 
 export default Kanban;
+
+  
+

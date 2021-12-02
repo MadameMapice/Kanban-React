@@ -4,7 +4,7 @@ import PostItEdit from './PostItEdit';
 
 function Column(props){
 
-    let tableaufiltre= props.tableau.filter((elem)=>elem.statut===parseInt(props.statut))
+    let tableaufiltre= props.tableau.filter((elem)=>elem.state===parseInt(props.statut))
     console.log(tableaufiltre);
     return (
 
@@ -14,9 +14,9 @@ function Column(props){
             <h2 onClick={()=>{
                 let id=0
                 if(props.tableau.length>0){
-                    id=props.tableau[props.tableau.length-1].id+1
+                    id=props.tableau[props.tableau.length-1]._id+1
                 }
-                props.settableau([...props.tableau,{titre:"",content:"",statut:parseInt(props.statut),id:id, edit:false}])
+                props.settableau([...props.tableau,{title:"",content:"",state:parseInt(props.statut),_id:id, edit:false}])
             }}>{props.titre}</h2>
             
             {/* {props.tableau.map((elem,key)=><div>{elem.titre}</div>)} */}

@@ -1,3 +1,7 @@
+import { supprimer } from '../API/kanbanApi';
+import { moveleft } from '../API/kanbanApi';
+import { moveright } from '../API/kanbanApi';
+
 function PostIt(props) {
 
     return (
@@ -8,15 +12,22 @@ function PostIt(props) {
             <i className="fas fa-times" onClick={()=>{
             
                 let copie=[...props.tableau]
-                let numIndex= copie.findIndex((elem)=>elem.id==props.obj.id)
+                let numIndex= copie.findIndex((elem)=>elem._id==props.obj._id)
                 copie.splice(numIndex,1)
                 props.settableau([...copie])
+
+                supprimer(copie, numIndex, props.obj._id)
+                .then(function (data) {
+                    console.log(data);
+                }).catch(function (error) {
+                    console.warn('Something went wrong.', error);
+                });
 
             }}></i>
             
             </div>
 
-            <p>{props.obj.titre}</p>
+            <p>{props.obj.title}</p>
             <p>{props.obj.content}</p>
             {/* <p>{props.obj.id}</p> 
             Pour regarder le ID de Post it
@@ -28,11 +39,18 @@ function PostIt(props) {
             <p onClick={()=>{
             
             let copie=[...props.tableau]
-            let numIndex= copie.findIndex((elem)=>elem.id==props.obj.id)
+            let numIndex= copie.findIndex((elem)=>elem._id==props.obj._id)
 
-            if(copie [numIndex].statut>0){
-            copie[numIndex].statut--
+            if(copie [numIndex].state>0){
+            copie[numIndex].state--
             props.settableau([...copie])
+
+            moveleft(copie, numIndex)
+            .then(function (data) {
+            console.log(data);
+            }).catch(function (error) {
+            console.warn('Something went wrong.', error);
+            });
             
             }
 
@@ -43,7 +61,7 @@ function PostIt(props) {
                 <i className="fas fa-keyboard" onClick={()=>{
            
             let copie=[...props.tableau]
-            let numIndex= copie.findIndex((elem)=>elem.id==props.obj.id)
+            let numIndex= copie.findIndex((elem)=>elem._id==props.obj._id)
 
             copie[numIndex].edit = true 
             
@@ -54,10 +72,18 @@ function PostIt(props) {
             <p onClick={()=>{
             
             let copie=[...props.tableau]
-            let numIndex= copie.findIndex((elem)=>elem.id==props.obj.id)
-            if(copie[numIndex].statut<2){
-            copie[numIndex].statut++
+            let numIndex= copie.findIndex((elem)=>elem._id==props.obj._id)
+            if(copie[numIndex].state<2){
+            copie[numIndex].state++
             props.settableau([...copie])
+
+            moveright(copie, numIndex)
+            .then(function (data) {
+            console.log(data);
+            }).catch(function (error) {
+            console.warn('Something went wrong.', error);
+            }); 
+
             }
 
             }}>&rang;

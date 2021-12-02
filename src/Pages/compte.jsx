@@ -1,18 +1,42 @@
 import React from 'react';
 import {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { CompteApi } from '../API/kanbanApi'
 
 function Compte(props){
+    let navigate = useNavigate()
 
-    const[nom, setNom] = useState('')
-    const[prenom, setPrenom] = useState('')
-    const[email, setEmail] = useState('')
-    const[mdp, setMdp] = useState('')
+    const [form, setForm] = useState({nom: '', prenom: '', email: '', mdp: '', mdpc: ''})
+    // const[nom, setNom] = useState('')
+    // const[prenom, setPrenom] = useState('')
+    // const[email, setEmail] = useState('')
+    // const[mdp, setMdp] = useState('')
 
 
     function submitForm(event) {
         event.preventDefault()
         // console.log(login);
+        
+        CompteApi(form)
+        .then(function (data) {
 
+        console.log(data);
+
+        if (data.mess !== undefined) {
+
+            alert(data.mess)
+            
+        }
+        else {
+            
+            navigate('/kanban')        
+
+        }
+
+    }).catch(function (error) {
+        console.warn('Something went wrong.', error);
+    });
+        
     }
 
     return (
@@ -24,33 +48,33 @@ function Compte(props){
                     </div>
 
                     <div>
-                        <input type='text' placeholder='Nom' value = {nom} onChange = { (event) => {
+                        <input type='text' placeholder='Nom' value = {form.nom} onChange = { (event) => {
 
-                        setNom(event.target.value)
+                        setForm({...form,nom:event.target.value})
 
                         }}/>
                     </div>
                     
                     <div>
-                        <input type='text' placeholder='Prenom' value = {prenom} onChange = { (event) => {
+                        <input type='text' placeholder='Prenom' value = {form.prenom} onChange = { (event) => {
 
-                        setPrenom(event.target.value)
-
-                        }}/>
-                    </div>
-    
-                    <div>
-                        <input type='text' placeholder='Email' value = {email} onChange = { (event) => {
-
-                        setEmail(event.target.value)
+                        setForm({...form,prenom:event.target.value})
 
                         }}/>
                     </div>
     
                     <div>
-                        <input type='password' placeholder='Mot de passe' value = {mdp} onChange = { (event) => {
+                        <input type='text' placeholder='Email' value = {form.email} onChange = { (event) => {
 
-                        setMdp(event.target.value)
+                        setForm({...form,email:event.target.value})
+
+                        }}/>
+                    </div>
+    
+                    <div>
+                        <input type='password' placeholder='Mot de passe' value = {form.mdp} onChange = { (event) => {
+
+                        setForm({...form,mdp:event.target.value})
 
                         }}/>
                     </div>
@@ -59,6 +83,6 @@ function Compte(props){
         </form>
 
     )
-}
+                    }
 
 export default Compte;

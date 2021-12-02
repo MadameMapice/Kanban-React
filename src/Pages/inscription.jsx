@@ -1,17 +1,45 @@
 import React from 'react';
 import {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { InscriptionApi } from '../API/kanbanApi'
 
 function Inscription (props){
 
-    const[nom, setNom] = useState('')
-    const[prenom, setPrenom] = useState('')
-    const[email, setEmail] = useState('')
-    const[mdp, setMdp] = useState('')
-    const[mdpc, setMdpc] = useState('')
+    let navigate = useNavigate()
+
+    const [form, setForm] = useState({nom: '', prenom: '', email: '', mdp: '', mdpc: ''})
+
+    // const[nom, setNom] = useState('')
+    // const[prenom, setPrenom] = useState('')
+    // const[email, setEmail] = useState('')
+    // const[mdp, setMdp] = useState('')
+    // const[mdpc, setMdpc] = useState('')
 
     function submitForm(event) {
+
         event.preventDefault()
         // console.log(nom);
+
+        if ( form.mdp == form.mdpc) {
+
+            InscriptionApi(form)        
+            .then(function (data) {
+    
+            console.log(data);
+                navigate('/')
+    
+        }).catch(function (error) {
+            console.warn('Something went wrong.', error);
+        });
+
+        }
+
+        else {
+
+            alert('Les Mot de Passe sont différents !')
+
+        }
+
         
     }
     return (
@@ -21,9 +49,11 @@ function Inscription (props){
                     
                 <div className="flexB">
                     <label htmlFor='nom'>Nom : </label>
-                    <input type='text' id='nom' value = {nom} onChange = { (event) => {
+                    <input type='text' id='nom' value = {form.nom} onChange = { (event) => {
 
-                    setNom(event.target.value)
+                    setForm({...form,nom:event.target.value})
+
+                    // console.log(event.target.value);
 
                     }}/>
 
@@ -31,9 +61,9 @@ function Inscription (props){
                 
                 <div className="flexB">
                     <label htmlFor='prenom'>Prenom : </label>
-                    <input type='text' id='prenom' value = {prenom} onChange = { (event) => {
+                    <input type='text' id='prenom' value = {form.prenom} onChange = { (event) => {
 
-                    setPrenom(event.target.value)
+                    setForm({...form,prenom:event.target.value})
 
                     }}/>
 
@@ -41,9 +71,9 @@ function Inscription (props){
 
                 <div className="flexB">
                     <label htmlFor='email'>Email : </label>
-                    <input type='text' id='email' value = {email} onChange = { (event) => {
+                    <input type='text' id='email' value = {form.email} onChange = { (event) => {
 
-                    setEmail(event.target.value)
+                    setForm({...form,email:event.target.value})
 
                     }}/>
 
@@ -51,9 +81,9 @@ function Inscription (props){
 
                 <div className="flexB">
                     <label htmlFor='mdp'>Mot de Passe : </label>
-                    <input type='text' id='mdp' value = {mdp} onChange = { (event) => {
+                    <input type='text' id='mdp' value = {form.mdp} onChange = { (event) => {
 
-                    setMdp(event.target.value)
+                        setForm({...form,mdp:event.target.value})
 
                     }}/>
 
@@ -61,9 +91,9 @@ function Inscription (props){
 
                     <div className="flexB">
                     <label for='mdpc'>Comfirmer le Mot de Passe : </label>
-                    <input type='password' id='mdpc' value = {mdpc} onChange = { (event) => {
+                    <input type='password' id='mdpc' value = {form.mdpc} onChange = { (event) => {
 
-                    setMdpc(event.target.value)
+                        setForm({...form,mdpc:event.target.value})
 
                     }}/>
 

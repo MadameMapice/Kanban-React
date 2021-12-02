@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 function PostItEdit(props) {
 
-    const[titre, setTitre] = useState(props.obj.titre)
+    const[titre, setTitre] = useState(props.obj.title)
     const[text, setText]= useState(props.obj.content)
 
     return (
@@ -16,19 +16,14 @@ function PostItEdit(props) {
             <button type="submit" onClick={()=>{
            
            let copie=[...props.tableau]
-           let numIndex= copie.findIndex((elem)=>elem.id==props.obj.id)
+           let numIndex= copie.findIndex((elem)=>elem._id==props.obj._id)
 
-           copie[numIndex].titre=titre
+           copie[numIndex].title=titre
            copie[numIndex].content=text
            copie[numIndex].edit = false 
            
            props.settableau([...copie])
-               }}>Valider</button>
-
-
-
-
-            
+               }}>Valider</button> 
 
         </div>
 
