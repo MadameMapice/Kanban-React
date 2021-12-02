@@ -22,6 +22,11 @@ h2{
  text-decoration-line: underline;
 }
 
+h2:hover{
+  cursor: pointer;
+  
+}
+
 .fa-pencil-alt{
   padding: 25px;
   margin-left: 0;
@@ -58,10 +63,11 @@ h2{
 
 .width20{
   width: 20%;
-  height: 570px;
+  min-height: 570px;
   margin-top: 40px;
   border: 2px black solid;
   margin-bottom: 40px;
+  text-align: center;
 
 }
 
@@ -172,16 +178,20 @@ button{
 }
 
 .postit{
+  flex-direction: column;
   background-color: rgb(204, 180, 226);
   border-radius: 10px;
   padding: 10px;
   margin: 5px;
-  height: 140px;
+  min-height: 140px;
+  position: relative;
+  align-items: center;
 }
 
 .flech{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 footer{
@@ -189,15 +199,39 @@ footer{
   text-align: center;
   background-color: black;
   font-size: 20px;
-  position: absolute;
   width: 100%;
-  bottom: 0;
+margin-top: 50px;
 }
 
 .fa-copyright{
   font-size: 10px;
   position: absolute;
   padding: 5px;
+}
+
+
+.x{
+  position: absolute;
+  right: 10px;
+  
+}
+
+.postit:hover{
+  cursor: pointer;
+ 
+}
+
+
+.postit input, textarea{
+  margin: 10px;
+}
+
+.postit textarea{
+  min-height: 100px
+}
+
+.postit button{
+  width: 60px;
 }
 
 

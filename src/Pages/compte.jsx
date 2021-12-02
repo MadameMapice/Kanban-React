@@ -7,12 +7,12 @@ function Compte(props){
     const[prenom, setPrenom] = useState('')
     const[email, setEmail] = useState('')
     const[mdp, setMdp] = useState('')
-    const[mdpc, setMdpc] = useState('')
+
 
     function submitForm(event) {
         event.preventDefault()
         // console.log(login);
-        
+
     }
 
     return (
