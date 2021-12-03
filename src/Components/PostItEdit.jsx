@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {RecupModiApi} from '../API/kanbanApi';
 
 function PostItEdit(props) {
 
@@ -23,6 +24,15 @@ function PostItEdit(props) {
            copie[numIndex].edit = false 
            
            props.settableau([...copie])
+
+           RecupModiApi(copie, numIndex, props.obj._id)
+            .then(function (data) {
+            console.log(data);
+            }).catch(function (error) {
+            console.warn('Something went wrong.', error);
+            }); 
+
+            
                }}>Valider</button> 
 
         </div>

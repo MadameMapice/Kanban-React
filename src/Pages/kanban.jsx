@@ -12,8 +12,7 @@ function Kanban(props){
 
   useEffect(() => {
 
-    RecupTachesApi()
-    .then(function (data) {
+    RecupTachesApi().then(function (data) {
 
     console.log(data);
     settableau([...data.tasks])

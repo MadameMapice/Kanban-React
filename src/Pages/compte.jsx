@@ -1,16 +1,32 @@
 import React from 'react';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CompteApi } from '../API/kanbanApi'
+import { RecupTachesApi } from '../API/kanbanApi'
 
 function Compte(props){
     let navigate = useNavigate()
 
-    const [form, setForm] = useState({nom: '', prenom: '', email: '', mdp: '', mdpc: ''})
+    const [form, setForm] = useState({nom_modif: '', mail_modif: '', mdp_modif: ''})
     // const[nom, setNom] = useState('')
     // const[prenom, setPrenom] = useState('')
     // const[email, setEmail] = useState('')
     // const[mdp, setMdp] = useState('')
+
+    useEffect(() => {
+        
+        RecupTachesApi()
+        .then(function (data) {
+
+            console.log(data);
+
+            setForm( {...form, nom_modif: data.name, mail_modif: data.mail, mdp_modif: data.mdp} )
+            
+        }).catch(function (error) {
+            console.warn('Something went wrong.', error);
+        });
+
+        }, []);
 
 
     function submitForm(event) {
@@ -22,16 +38,16 @@ function Compte(props){
 
         console.log(data);
 
-        if (data.mess !== undefined) {
+        // if (data.mess !== undefined) {
 
-            alert(data.mess)
+        //     alert(data.mess)
             
-        }
-        else {
+        // }
+        // else {
             
-            navigate('/kanban')        
+        //     navigate('/kanban')        
 
-        }
+        // }
 
     }).catch(function (error) {
         console.warn('Something went wrong.', error);
@@ -39,42 +55,35 @@ function Compte(props){
         
     }
 
+
     return (
         
         <form className='compte' onSubmit={submitForm}>
              
                     <div className='profil'>
-                    <i class="fas fa-laugh-beam"></i>
+                    <i className="fas fa-laugh-beam"></i>
                     </div>
 
                     <div>
-                        <input type='text' placeholder='Nom' value = {form.nom} onChange = { (event) => {
+                        <input type='text' placeholder='Nom' value = {form.nom_modif} onChange = { (event) => {
 
-                        setForm({...form,nom:event.target.value})
+                        setForm({...form,nom_modif:event.target.value})
 
                         }}/>
                     </div>
                     
                     <div>
-                        <input type='text' placeholder='Prenom' value = {form.prenom} onChange = { (event) => {
+                        <input type='text' placeholder='Email' value = {form.mail_modif} onChange = { (event) => {
 
-                        setForm({...form,prenom:event.target.value})
-
-                        }}/>
-                    </div>
-    
-                    <div>
-                        <input type='text' placeholder='Email' value = {form.email} onChange = { (event) => {
-
-                        setForm({...form,email:event.target.value})
+                        setForm({...form,mail_modif:event.target.value})
 
                         }}/>
                     </div>
     
                     <div>
-                        <input type='password' placeholder='Mot de passe' value = {form.mdp} onChange = { (event) => {
+                        <input type='password' placeholder='Mot de passe' value = {form.mdp_modif} onChange = { (event) => {
 
-                        setForm({...form,mdp:event.target.value})
+                        setForm({...form,mdp_modif:event.target.value})
 
                         }}/>
                     </div>
@@ -83,6 +92,6 @@ function Compte(props){
         </form>
 
     )
-                    }
+                    }      
 
 export default Compte;

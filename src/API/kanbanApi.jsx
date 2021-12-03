@@ -54,14 +54,14 @@ export function LoginApi(form) {
 
 export function CompteApi(form) {
     
-    return fetch('https://trello.jdedev.fr/api/user/61a8cfeb696c7d7e14c2b8da', {
+    return fetch('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0', {
 
     method: 'PUT',
     body: JSON.stringify({
 
-        nom: form.nom,
-        mdp: form.mdp,
-        email:form.email
+        nom: form.nom_modif,
+        mdp: form.mdp_modif,
+        email:form.mail_modif
         
     }),
 
@@ -79,9 +79,39 @@ export function CompteApi(form) {
 
 }
 
+export function EnvoiTachesApi() {
+
+    return fetch('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/', {
+
+        method: 'POST',
+        body: JSON.stringify({
+
+            titre: '',
+            contenu: '',
+            etat: 0
+            
+        }),
+
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+
+    })
+
+    .then(function (response) {
+
+        if (response.ok) {
+            return response.json();
+        }
+        return Promise.reject(response);
+    
+    })
+    
+}
+
 export function RecupTachesApi() {
     
-    return fetch('https://trello.jdedev.fr/api/user/61a8cfeb696c7d7e14c2b8da', {
+    return fetch('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0', {
 
     method: 'GET',
   
@@ -102,7 +132,7 @@ export function RecupTachesApi() {
 
 export function supprimer(numIndex, _id) {
     
-    return fetch ('https://trello.jdedev.fr/api/user/61a8cfeb696c7d7e14c2b8da/tache/' + _id, {
+    return fetch ('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/' + _id, {
 
         method: 'DELETE',
 
@@ -122,7 +152,7 @@ export function supprimer(numIndex, _id) {
 }
 export function moveleft(copie, numIndex) {
 
-    return fetch ('https://trello.jdedev.fr/api/user/61a8cfeb696c7d7e14c2b8da/tache/' + numIndex, {
+    return fetch ('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/' + numIndex, {
         
         method: 'PUT',
 
@@ -151,7 +181,7 @@ export function moveleft(copie, numIndex) {
 
 export function moveright(copie, numIndex) {
 
-    return fetch ('https://trello.jdedev.fr/api/user/61a8cfeb696c7d7e14c2b8da/tache/' + numIndex, {
+    return fetch ('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/' + numIndex, {
         
         method: 'PUT',
 
@@ -160,6 +190,36 @@ export function moveright(copie, numIndex) {
             titre: copie[numIndex].title,
             contenu: copie[numIndex].content,
             etat: copie[numIndex].state
+
+        }),
+
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+
+        
+    })
+    
+    .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        }
+        return Promise.reject(response);
+        }) 
+}
+
+export function RecupModiApi(copie, numIndex) {
+
+    return fetch ('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/' + numIndex, {
+        
+        method: 'PUT',
+
+        body: JSON.stringify( {
+
+            titre: copie[numIndex].title,
+            contenu: copie[numIndex].content,
+            etat: copie[numIndex].state
+
 
         }),
 

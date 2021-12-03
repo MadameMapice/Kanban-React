@@ -6,7 +6,7 @@ function Footer(props){
     <footer>
         <div className='titre'>
           <p>
-            Kanban by Pia Copyright <span><i class="fas fa-copyright"></i></span>
+            Kanban by Pia Copyright <span><i className="fas fa-copyright"></i></span>
           </p>
         </div> 
 
