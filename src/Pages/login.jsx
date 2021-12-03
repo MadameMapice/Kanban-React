@@ -1,11 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {LoginApi} from '../API/kanbanApi'
 import {useNavigate} from 'react-router-dom'
+import {UserContexte} from '../Contexte/usercontexte'
 
 function Login(props){
+
     let navigate = useNavigate()
+    const {userId, setuserId}= useContext(UserContexte)
 
     const [form, setForm] = useState({login: '', pass:''})
     // const[login, setLogin] = useState('')
@@ -15,7 +18,7 @@ function Login(props){
         event.preventDefault()
         //  console.log(login);
 
-        LoginApi(form)
+        LoginApi(form, userId)
         .then(function (data) {
 
         console.log(data);
@@ -26,7 +29,7 @@ function Login(props){
             
         }
         else {
-            
+            setuserId(data._id)
             navigate('/kanban')        
 
         }

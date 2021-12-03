@@ -1,13 +1,17 @@
 import React from 'react';
-import {useState, useEffect} from 'react'
+import {useState, useEffect,useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CompteApi } from '../API/kanbanApi'
 import { RecupTachesApi } from '../API/kanbanApi'
+import { UserContexte } from '../Contexte/usercontexte'
 
 function Compte(props){
     let navigate = useNavigate()
 
     const [form, setForm] = useState({nom_modif: '', mail_modif: '', mdp_modif: ''})
+
+    const {userId, setuserId}= useContext(UserContexte)
+
     // const[nom, setNom] = useState('')
     // const[prenom, setPrenom] = useState('')
     // const[email, setEmail] = useState('')
@@ -33,21 +37,21 @@ function Compte(props){
         event.preventDefault()
         // console.log(login);
         
-        CompteApi(form)
+        CompteApi(form, userId)
         .then(function (data) {
 
         console.log(data);
 
-        // if (data.mess !== undefined) {
+        if (data.mess !== undefined) {
 
-        //     alert(data.mess)
+            alert(data.mess)
             
-        // }
-        // else {
+        }
+        else {
             
-        //     navigate('/kanban')        
+            navigate('/')        
 
-        // }
+        }
 
     }).catch(function (error) {
         console.warn('Something went wrong.', error);

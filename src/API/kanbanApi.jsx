@@ -1,3 +1,6 @@
+const urlAPI= 'https://trello.jdedev.fr/api/'
+
+
 export function InscriptionApi(form) {
     
 return fetch('https://trello.jdedev.fr/api/user/', {
@@ -52,9 +55,9 @@ export function LoginApi(form) {
 }
 
 
-export function CompteApi(form) {
+export function CompteApi(form, userId) {
     
-    return fetch('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0', {
+    return fetch('https://trello.jdedev.fr/api/user/' + userId, {
 
     method: 'PUT',
     body: JSON.stringify({
@@ -79,9 +82,9 @@ export function CompteApi(form) {
 
 }
 
-export function EnvoiTachesApi() {
+export function EnvoiTachesApi(userId) {
 
-    return fetch('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/', {
+    return fetch('https://trello.jdedev.fr/api/user/'+ userId + '/tache/', {
 
         method: 'POST',
         body: JSON.stringify({
@@ -109,9 +112,9 @@ export function EnvoiTachesApi() {
     
 }
 
-export function RecupTachesApi() {
+export function RecupTachesApi(userId) {
     
-    return fetch('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0', {
+    return fetch('https://trello.jdedev.fr/api/user/'+userId, {
 
     method: 'GET',
   
@@ -130,9 +133,9 @@ export function RecupTachesApi() {
 
 }
 
-export function supprimer(numIndex, _id) {
+export function supprimer(numIndex, _id, userId) {
     
-    return fetch ('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/' + _id, {
+    return fetch ('https://trello.jdedev.fr/api/user/'+userId + '/tache/' + _id, {
 
         method: 'DELETE',
 
@@ -150,9 +153,9 @@ export function supprimer(numIndex, _id) {
         }) 
 
 }
-export function moveleft(copie, numIndex) {
+export function moveleft(copie, numIndex, userId) {
 
-    return fetch ('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/' + numIndex, {
+    return fetch ('https://trello.jdedev.fr/api/user/'+userId+'/tache/' + numIndex, {
         
         method: 'PUT',
 
@@ -179,9 +182,9 @@ export function moveleft(copie, numIndex) {
         }) 
 }
 
-export function moveright(copie, numIndex) {
+export function moveright(copie, numIndex, userId) {
 
-    return fetch ('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/' + numIndex, {
+    return fetch ('https://trello.jdedev.fr/api/user/'+userId+'/tache/' + numIndex, {
         
         method: 'PUT',
 
@@ -208,9 +211,9 @@ export function moveright(copie, numIndex) {
         }) 
 }
 
-export function RecupModiApi(copie, numIndex) {
+export function RecupModiApi(copie, numIndex, userId) {
 
-    return fetch ('https://trello.jdedev.fr/api/user/61a9d2f9d5fdad90641446f0/tache/' + numIndex, {
+    return fetch ('https://trello.jdedev.fr/api/user/'+userId+'/tache/' + numIndex, {
         
         method: 'PUT',
 

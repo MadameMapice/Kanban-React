@@ -1,8 +1,13 @@
+import React, {useState, useEffect, useContext} from 'react';
 import { supprimer } from '../API/kanbanApi';
 import { moveleft } from '../API/kanbanApi';
 import { moveright } from '../API/kanbanApi';
+import { UserContexte } from '../Contexte/usercontexte';
+
 
 function PostIt(props) {
+
+    const {userId, setuserId}= useContext(UserContexte);
 
     return (
 
@@ -16,7 +21,7 @@ function PostIt(props) {
                 copie.splice(numIndex,1)
                 props.settableau([...copie])
 
-                supprimer(copie, numIndex, props.obj._id)
+                supprimer(copie, numIndex, props.obj._id, userId)
                 .then(function (data) {
                     console.log(data);
                 }).catch(function (error) {
@@ -45,7 +50,7 @@ function PostIt(props) {
             copie[numIndex].state--
             props.settableau([...copie])
 
-            moveleft(copie, numIndex)
+            moveleft(copie, numIndex, userId)
             .then(function (data) {
             console.log(data);
             }).catch(function (error) {
@@ -77,7 +82,7 @@ function PostIt(props) {
             copie[numIndex].state++
             props.settableau([...copie])
 
-            moveright(copie, numIndex)
+            moveright(copie, numIndex, userId)
             .then(function (data) {
             console.log(data);
             }).catch(function (error) {

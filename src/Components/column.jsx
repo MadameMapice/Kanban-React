@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import PostIt from './PostIt';
 import PostItEdit from './PostItEdit';
 import { EnvoiTachesApi } from '../API/kanbanApi';
+import { UserContexte } from '../Contexte/usercontexte';
+
 
 
 function Column(props){
+
+    const {userId, setuserId}= useContext(UserContexte)
 
     let tableaufiltre= props.tableau.filter((elem)=>elem.state===parseInt(props.statut) || elem.state === undefined || elem.state === null)
     // console.log(tableaufiltre);
@@ -20,7 +24,8 @@ function Column(props){
                 }
                 props.settableau([...props.tableau,{title:"",content:"",state:parseInt(props.statut),_id:id, edit:false}])
 
-                EnvoiTachesApi()
+                EnvoiTachesApi(userId)
+                
                 .then(function (data) {
                     console.log(data);
                 }).catch(function (error) {

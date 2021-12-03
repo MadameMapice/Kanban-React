@@ -1,10 +1,12 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {RecupModiApi} from '../API/kanbanApi';
+import {UserContexte} from '../Contexte/usercontexte'
 
 function PostItEdit(props) {
 
     const[titre, setTitre] = useState(props.obj.title)
     const[text, setText]= useState(props.obj.content)
+    const {userId, setuserId}= useContext(UserContexte)
 
     return (
 
@@ -25,7 +27,7 @@ function PostItEdit(props) {
            
            props.settableau([...copie])
 
-           RecupModiApi(copie, numIndex, props.obj._id)
+           RecupModiApi(copie, numIndex, props.obj._id, userId)
             .then(function (data) {
             console.log(data);
             }).catch(function (error) {
